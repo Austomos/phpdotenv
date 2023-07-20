@@ -53,6 +53,26 @@ final class ServerConstAdapterTest extends TestCase
         self::assertSame('foo', $_SERVER['CONST_TEST']);
     }
 
+    public function testGoodBoolFalseWrite()
+    {
+        self::assertTrue(self::createAdapter()->write('CONST_TEST', false));
+        self::assertIsBool($_SERVER['CONST_TEST']);
+        self::assertFalse($_SERVER['CONST_TEST']);
+    }
+
+    public function testGoodBoolTrueeWrite()
+    {
+        self::assertTrue(self::createAdapter()->write('CONST_TEST', true));
+        self::assertIsBool($_SERVER['CONST_TEST']);
+        self::assertTrue($_SERVER['CONST_TEST']);
+    }
+
+    public function testBadBoolFalseWrite()
+    {
+        self::assertTrue(self::createAdapter()->write('CONST_TEST', 'false'));
+        self::assertIsNotBool($_SERVER['CONST_TEST']);
+    }
+
     public function testEmptyWrite()
     {
         self::assertTrue(self::createAdapter()->write('CONST_TEST', ''));
