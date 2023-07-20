@@ -66,11 +66,11 @@ final class ApacheAdapter implements AdapterInterface
      * Write to an environment variable, if possible.
      *
      * @param non-empty-string $name
-     * @param string           $value
+     * @param mixed           $value
      *
      * @return bool
      */
-    public function write(string $name, string $value)
+    public function write(string $name, mixed $value)
     {
         return apache_setenv($name, $value);
     }
